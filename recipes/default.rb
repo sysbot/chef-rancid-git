@@ -11,13 +11,13 @@
 ## rancid version that modified to work with git
 
 # packages to support rancid
-include_recipe "git"
 include_recipe "cron"
 
 # packages needed by rancid to build and run
 packages = {}
 packages.merge!({
   'expect' => '',  
+  'git' => '',
   'build-essential' => '',
   'autoconf' => '',
 })
@@ -32,7 +32,7 @@ end
 # Rancid is going to run as a user, which query router configs
 # we creating the user/group here
 
-group "#{node[:rancid][:group]}" do
+group {node[:rancid][:group]} do
   gid node[:rancid][:gid]
 end
 
@@ -40,7 +40,7 @@ user "#{node[:rancid][:user]}" do
   supports :manage_home => true
   comment "RANCID User"
   uid node[:rancid][:uid]
-  gid "#{node[:rancid][:group]}"
+  gid {node[:rancid][:group]}
   home "#{node[:rancid][:prefix_dir]}"
   shell "/bin/bash"
 end
