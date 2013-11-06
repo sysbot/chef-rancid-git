@@ -40,7 +40,7 @@ user node[:rancid][:user] do
   supports :manage_home => true
   comment "RANCID User"
   uid node[:rancid][:uid]
-  gid {node[:rancid][:group]}
+  gid node[:rancid][:group]
   home node[:rancid][:prefix_dir]
   shell "/bin/bash"
 end
