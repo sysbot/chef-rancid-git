@@ -32,16 +32,16 @@ end
 # Rancid is going to run as a user, which query router configs
 # we creating the user/group here
 
-group {node[:rancid][:group]} do
+group node[:rancid][:group] do
   gid node[:rancid][:gid]
 end
 
-user "#{node[:rancid][:user]}" do
+user node[:rancid][:user] do
   supports :manage_home => true
   comment "RANCID User"
   uid node[:rancid][:uid]
   gid {node[:rancid][:group]}
-  home "#{node[:rancid][:prefix_dir]}"
+  home node[:rancid][:prefix_dir]
   shell "/bin/bash"
 end
 
@@ -50,7 +50,7 @@ end
 if node.chef_environment == "dev"
    branch_name = "master"
 else
-   branch_name = "#{node[:rancid][:version]}"
+   branch_name = node[:rancid][:version]
 end
 
 git "#{node[:rancid][:install_dir]}/rancid-git" do
@@ -58,11 +58,11 @@ git "#{node[:rancid][:install_dir]}/rancid-git" do
     File.exist?("#{node[:rancid][:install_dir]}/.cloginrc")
   end
   # we use http so we can delay dealing with ssh_known_host manangement
-  repository "#{node[:rancid][:url]}"
+  repository node[:rancid][:url]
   revision branch_name
   action :sync
-  user "#{node[:rancid][:user]}"
-  group "#{node[:rancid][:group]}"
+  user node[:rancid][:user]
+  group node[:rancid][:group]
 end
 
 # build and install rancid from source here
@@ -70,8 +70,8 @@ bash "build_install_rancid" do
   not_if do
     File.exist?("#{node[:rancid][:install_dir]}/etc/rancid.conf")
   end
-  user "#{node[:rancid][:user]}"
-  group "#{node[:rancid][:group]}"
+  user node[:rancid][:user]
+  group node[:rancid][:group]
   cwd "#{node[:rancid][:install_dir]}/rancid-git"
   code <<-EOF
     autoreconf
@@ -84,12 +84,12 @@ end
 cron_d "hourly-rancid-diff" do
   hour 1
   command "#{node[:rancid][:install_dir]}/bin/rancid-run"
-  user "#{node[:rancid][:user]}"
+  user node[:rancid][:user]
 end
 
 cron_d "daily-clean-up" do
   hour 23
   command "/usr/bin/find #{node[:rancid][:install_dir]}/var/rancid/logs -type f -mtime +2 -exec rm {} \;"
-  user "#{node[:rancid][:user]}"
+  user node[:rancid][:user]
 end
 
