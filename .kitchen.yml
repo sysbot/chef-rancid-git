@@ -1,0 +1,21 @@
+---
+driver:
+  name: vagrant
+  customize:
+    memory: 1024
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: false
+
+platforms:
+- name: ubuntu-12.04
+  driver:
+    box: ubuntu-12.04
+    box_url: http://mirrors.ooyala.com/vagrant/ubuntu1204.box
+
+suites:
+- name: default
+  run_list:
+    - recipe[rancid-git]
+  attributes: { region: "sv2"}
