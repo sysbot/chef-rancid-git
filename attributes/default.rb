@@ -29,3 +29,5 @@ default[:rancid][:configs][:cloginrc] = {
   :identity => "#{node[:rancid][:prefix_dir]}/rancid",
   :pattern => "*"
 }
+
+default[:rancid][:admin_email] = "root@localhost"

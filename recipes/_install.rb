@@ -72,7 +72,8 @@ template "#{node[:rancid][:install_dir]}/etc/rancid.conf" do
   source "rancid.conf.erb"
   mode "0644"
   variables(
-   :admin_email => node[:rancid][:admin_email],
-   :install_dir => node[:rancid][:install_dir]
+   admin_email: node[:rancid][:admin_email],
+   install_dir: node[:rancid][:install_dir],
+   groups: node[:rancid][:configs][:groups]
   )
 end

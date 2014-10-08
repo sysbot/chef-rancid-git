@@ -5,8 +5,8 @@ TERM=network;export TERM
 LC_COLLATE="POSIX"; export LC_COLLATE
 umask 027
 TMPDIR=/tmp; export TMPDIR
-BASEDIR=<%= node['rancid']['install_dir']%>/var/rancid; export BASEDIR
-PATH=<%= node['rancid']['install_dir']%>/bin:/usr/bin:/usr/sbin:/bin:.:/usr/local/bin:/usr/bin; export PATH
+BASEDIR=<%= @install_dir %>/var/rancid; export BASEDIR
+PATH=<%= @install_dir %>/bin:/usr/bin:/usr/sbin:/bin:.:/usr/local/bin:/usr/bin; export PATH
 CVSROOT=$BASEDIR/CVS; export CVSROOT
 LOGDIR=$BASEDIR/logs; export LOGDIR
 RCSSYS=git; export RCSSYS
@@ -19,15 +19,7 @@ OLDTIME=4; export OLDTIME
 #LOCKTIME=4; export LOCKTIME
 PAR_COUNT=5; export PAR_COUNT
 
-
-# list of rancid groups
-#LIST_OF_GROUPS="sf sjc1 sj sv2 lon mtv nyc gdl syd"
-
-#<% node['rancid']['groups'].each do |g| -%>
-#  <%= g %>
-#<% end -%>
-
-LIST_OF_GROUPS="<%= node['rancid']['configs']['groups'].reduce("") {|acc,v| acc.concat("#{v} ")} %>"
+LIST_OF_GROUPS="<%= @groups.reduce("") {|acc,v| acc.concat("#{v} ")} %>"
 
 ###########
 ## Ooyala specific to bypass the rancid-${group} mapping, due to no access to remote smtp-out2.sv2 server
