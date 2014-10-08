@@ -1,0 +1,15 @@
+{
+  "id": "sjc1",
+  "routers": [
+    {
+      "name": "bdr1-sjc1.services.ooyala.net",
+      "model": "juniper",
+      "status": "up"
+    },
+    {
+      "name": "bdr2-sjc1.services.ooyala.net",
+      "model": "juniper",
+      "status": "up"
+    }
+  ]
+}

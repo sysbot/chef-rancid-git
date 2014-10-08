@@ -16,6 +16,11 @@ platforms:
 
 suites:
 - name: default
+  data_bags_path: 'test/integration/data_bags'
   run_list:
     - recipe[rancid-git]
-  attributes: { region: "sv2"}
+  attributes:
+    region: "sv2"
+    rancid:
+      configs:
+        groups: ["sjc1"]
