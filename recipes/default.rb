@@ -27,5 +27,25 @@ end
 # deploy chefvault
 # ssh key
 # cloginrc
+include_recipe "rancid-git::_keys"
+
+list = Array.new
+node['rancid']['configs']['groups'].each do |g|
+  puts "G: #{g}"
+  search(:secrets, "id:\"#{g}\"").each do |n|
+    list << n
+  end
+end
+
+template "#{node[:rancid][:install_dir]}/.cloginrc" do
+  source "cloginrc.erb"
+  owner node[:rancid][:user]
+  group node[:rancid][:group]
+  mode "0644"
+  variables(
+    logins: list
+  )
+end
+
 
 include_recipe "rancid-git::_cron"

@@ -24,3 +24,12 @@ suites:
     rancid:
       configs:
         groups: ["sjc1"]
+- name: secrets
+  data_bags_path: 'test/integration/data_bags'
+  run_list:
+    - recipe[test::secrets]
+  attributes:
+    region: "sv2"
+    rancid:
+      configs:
+
