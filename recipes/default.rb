@@ -7,7 +7,6 @@
 # All rights reserved
 #
 
-
 # packages to support rancid
 include_recipe "rancid-git::_install"
 
@@ -26,9 +25,9 @@ end
 
 # deploy chefvault
 # ssh key
-# cloginrc
-include_recipe "rancid-git::_keys"
+include_recipe "rancid-git::_secrets"
 
+# cloginrc
 list = Array.new
 node['rancid']['configs']['groups'].each do |g|
   puts "G: #{g}"
@@ -46,6 +45,5 @@ template "#{node[:rancid][:install_dir]}/.cloginrc" do
     logins: list
   )
 end
-
 
 include_recipe "rancid-git::_cron"

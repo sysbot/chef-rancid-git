@@ -5,8 +5,8 @@
 #add method *-sjc1*            ssh
 
 <% @logins.each do |i| -%>
-add user <%= i[:pattern] %> <%= i[:username] %>
-add password <%= i[:pattern] %> {<%= i[:login] %>} {<%= i[:enable] %>}
-add identity <%= i[:pattern] %> <%= i[:identity_file] %>
-add method <%= i[:pattern] %> <%= i[:method] %>
+add user <%= i[:patterns] %> <%= i[:username] %>
+add password <%= i[:patterns] %> {<%= i[:login] %>} {<%= i[:enable] %>}
+add identity <%= i[:patterns] %> <%= i[:identity_file] %>
+add method <%= i[:patterns] %> <%= i[:method] %>
 <% end -%>

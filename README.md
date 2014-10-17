@@ -44,6 +44,29 @@ default[:rancid][:version] = 'af62ee744c0bb268fddb9715b57b6c60ec1463b0'
 
 Usage
 -----
+
+#### Build a databag with the following format for hosts in eatch group
+```json
+{
+  "id": "sjc1",
+  "routers": [
+    {
+      "name": "router1.company.com",
+      "model": "juniper",
+      "status": "up"
+    },
+    {
+      "name": "router2.company.com",
+      "model": "juniper",
+      "status": "up"
+    }
+  ]
+}
+```
+
+#### Build a databag with the following data and format for cloginrc
+
+
 #### rancid-git::default
 Just include `rancid-git` in your node's `run_list`:
 

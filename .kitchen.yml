@@ -21,6 +21,7 @@ suites:
     - recipe[rancid-git]
   attributes:
     region: "sv2"
+    dev_mode: true
     rancid:
       configs:
         groups: ["sjc1"]

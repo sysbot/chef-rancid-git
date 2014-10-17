@@ -1,4 +1,3 @@
-
 # basic attributes
 default[:postfix][:enabled] = true
 default[:rancid][:installed] = false
@@ -22,12 +21,5 @@ default[:rancid][:version] = 'af62ee744c0bb268fddb9715b57b6c60ec1463b0'
 
 # configs
 default[:rancid][:configs][:groups] = ["default"]
-default[:rancid][:configs][:cloginrc] = {
-  :user => "default",
-  :method => "ssh",
-  :password => "default",
-  :identity => "#{node[:rancid][:prefix_dir]}/rancid",
-  :pattern => "*"
-}
 
 default[:rancid][:admin_email] = "root@localhost"
