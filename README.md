@@ -10,12 +10,8 @@ is required to be installed. I've only test this on Ubuntu 12.04
 
 You will still need to install a MTA to send emails from the rancid machine.
 
-e.g.
-#### packages
-- `git` - git tools
-- `cron` - needed to run rancid hourly
-- `build-essential` - needed on Ubuntu to build
-- `autoconf` - needed on Ubuntu to build
+To securely store and manage the remote devices. You will need chef-vault
+to manage the credential that's going to be deploy on the machine.
 
 Attributes
 ----------
@@ -80,6 +76,10 @@ Just include `rancid-git` in your node's `run_list`:
 ```
 Note that by default, it will only install RANCID. You still need to configure
 rancid.conf, .cloginrc and /etc/aliases to make rancid fully functional.
+
+#### rancid-git::secrets
+Will generate a new SSH key to be used to deploy to the routers/switches. It
+also has the code to retreive secrets from data bag items encrypted with chef-vault.
 
 Contributing
 ------------

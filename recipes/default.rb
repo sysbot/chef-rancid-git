@@ -23,10 +23,6 @@ node['rancid']['configs']['groups'].each do |g|
   end
 end
 
-# deploy chefvault
-# ssh key
-include_recipe "rancid-git::_secrets"
-
 # cloginrc
 list = Array.new
 node['rancid']['configs']['groups'].each do |g|
